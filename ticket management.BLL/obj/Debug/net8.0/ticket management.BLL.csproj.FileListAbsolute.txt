@@ -1,0 +1,17 @@
+F:\Freelance\ticket management.BLL\bin\Debug\net8.0\ticket management.BLL.deps.json
+F:\Freelance\ticket management.BLL\bin\Debug\net8.0\ticket management.BLL.dll
+F:\Freelance\ticket management.BLL\bin\Debug\net8.0\ticket management.BLL.pdb
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\ticket management.BLL.GeneratedMSBuildEditorConfig.editorconfig
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\ticket management.BLL.AssemblyInfoInputs.cache
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\ticket management.BLL.AssemblyInfo.cs
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\ticket management.BLL.csproj.CoreCompileInputs.cache
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\ticket management.BLL.dll
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\refint\ticket management.BLL.dll
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\ticket management.BLL.pdb
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\ref\ticket management.BLL.dll
+F:\Freelance\ticket management.BLL\bin\Debug\net8.0\Ticket Management.BLL.runtimeconfig.json
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\Ticket Management.BLL.csproj.AssemblyReference.cache
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\Ticket Management.BLL.genruntimeconfig.cache
+F:\Freelance\ticket management.BLL\bin\Debug\net8.0\Ticket Management.DAL.dll
+F:\Freelance\ticket management.BLL\bin\Debug\net8.0\Ticket Management.DAL.pdb
+F:\Freelance\ticket management.BLL\obj\Debug\net8.0\Ticket M.943D547C.Up2Date

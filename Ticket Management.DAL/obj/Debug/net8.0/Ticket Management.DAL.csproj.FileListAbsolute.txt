@@ -1,0 +1,14 @@
+F:\Freelance\Ticket Management.DAL\bin\Debug\net8.0\Ticket Management.DAL.deps.json
+F:\Freelance\Ticket Management.DAL\bin\Debug\net8.0\Ticket Management.DAL.dll
+F:\Freelance\Ticket Management.DAL\bin\Debug\net8.0\Ticket Management.DAL.pdb
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\Ticket Management.DAL.GeneratedMSBuildEditorConfig.editorconfig
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\Ticket Management.DAL.AssemblyInfoInputs.cache
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\Ticket Management.DAL.AssemblyInfo.cs
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\Ticket Management.DAL.csproj.CoreCompileInputs.cache
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\Ticket Management.DAL.dll
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\refint\Ticket Management.DAL.dll
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\Ticket Management.DAL.pdb
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\ref\Ticket Management.DAL.dll
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\Ticket Management.DAL.csproj.AssemblyReference.cache
+F:\Freelance\Ticket Management.DAL\bin\Debug\net8.0\Ticket Management.DAL.runtimeconfig.json
+F:\Freelance\Ticket Management.DAL\obj\Debug\net8.0\Ticket Management.DAL.genruntimeconfig.cache

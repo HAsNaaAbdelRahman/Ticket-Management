@@ -37,7 +37,7 @@ The system provides a functional ticket management module for customers and admi
  ![filter](filterby.png)
  ![filterwithnomatch](nomatch.png)
 - Edit ticket details (except ID and Created Date).
-![edit](edit.png.png)
+![edit](edit.png)
 
   
 

@@ -32,8 +32,14 @@ The system provides a functional ticket management module for customers and admi
 ### Admin
 
 - View all tickets.
+  ![ View all tickets](admindashboard.png)
 - Filter tickets by Issue Type and Priority.
+ ![filter](filterby.png)
+ ![filterwithnomatch](nomatch.png)
 - Edit ticket details (except ID and Created Date).
+   ![filter](edit.png.png)
+
+  
 
 ---
 

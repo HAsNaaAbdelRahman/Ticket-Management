@@ -12,6 +12,15 @@ This is a pilot technical evaluation task to demonstrate skills in:
 The system provides a functional ticket management module for customers and admins to manage support tickets.
 
 ---
+##  Admin Login Credentials
+
+To log in as an admin and access ticket management features:
+
+- **Email:** `admin@gmail.com`  
+- **Password:** `admin@123`
+
+Make sure to seed these credentials in the database or use them during registration for testing purposes.
+
 
 ## Features
 - Login && SignUp

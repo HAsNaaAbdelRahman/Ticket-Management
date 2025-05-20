@@ -18,6 +18,13 @@ The system provides a functional ticket management module for customers and admi
 ### Customer
 
 - Create a new ticket with full validation.
+
+- ### Create Ticket Page
+
+![Create Ticket Page](Screenshot 2025-05-20 043956.png)
+![Create Ticket Page](Screenshot 2025-05-20 043946.png)
+
+
 - View submitted tickets.
 - View full ticket details.
 

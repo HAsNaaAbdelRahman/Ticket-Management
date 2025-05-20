@@ -1,0 +1,47 @@
+﻿@using Ticket_Management.DAL.Model
+@model CustomerTicket
+@{
+    ViewData["Title"] = "Ticket Details";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+
+<div class="container mt-5">
+    <div class="card shadow mx-auto" style="max-width: 500px;">
+        <div class="card-header text-center">
+            <h5 class="mb-0">Ticket #@Model.TicketId</h5>
+        </div>
+
+        <ul class="list-group list-group-flush text-start">
+            <li class="list-group-item">
+                <strong>Full Name:</strong> @Model.FullName
+            </li>
+            <li class="list-group-item">
+                <strong>Email:</strong> @Model.Email
+            </li>
+            <li class="list-group-item">
+                <strong>Mobile:</strong> @Model.MobileNumber
+            </li>
+            <li class="list-group-item">
+                <strong>Description:</strong><br />
+                @Model.Description
+            </li>
+            <li class="list-group-item">
+                <strong>Priority:</strong> @Model.Priority.PriorityName
+            </li>
+            <li class="list-group-item">
+                <strong>Issue Type:</strong> @Model.IssueType.IssueTypeName
+            </li>
+            <li class="list-group-item">
+                <strong>Status:</strong> @Model.Status.StatusName
+            </li>
+            <li class="list-group-item">
+                <strong>Created:</strong> @Model.CreatedDate.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+            </li>
+        </ul>
+
+        <div class="card-footer text-center">
+            <a asp-action="AdminDashBoard" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+</div>

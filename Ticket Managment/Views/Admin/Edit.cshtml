@@ -1,0 +1,69 @@
+﻿@using Ticket_Management.DAL.DTOs.Outgoing
+@model EditForm
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Ticket</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <style>
+        body {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f8fafc;
+            margin: 0;
+        }
+
+        .card {
+            max-width: 420px;
+            width: 100%;
+            padding: 2.5rem 3rem;
+            margin-right: 30%;
+            margin-left: 35%;
+            margin-top: 6%;
+        }
+    </style>
+</head>
+<body>
+    <div class="card text-center shadow">
+        <form asp-action="Edit" method="post">
+            <h1 class="display-6 mb-4">Edit Ticket</h1>
+            <div asp-validation-summary="All"></div>
+
+            <input type="hidden" asp-for="TicketId" />
+
+            <div class="mb-3">
+                <textarea asp-for="Description" class="form-control" rows="3" placeholder="Description" required></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3" style="text-align: left;">
+                <label asp-for="IssueTypeId" class="form-label"></label>
+                <select asp-for="IssueTypeId" asp-items="ViewBag.IssueTypeList" class="form-select"></select>
+                <span asp-validation-for="IssueTypeId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3" style="text-align: left;">
+                <label asp-for="PriorityId" class="form-label"></label>
+                <select asp-for="PriorityId" asp-items="ViewBag.PriorityList" class="form-select"></select>
+                <span asp-validation-for="PriorityId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3" style="text-align: left;">
+                <label asp-for="StatusId" class="form-label"></label>
+                <select asp-for="StatusId" asp-items="ViewBag.StatusList" class="form-select"></select>
+                <span asp-validation-for="StatusId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CreatedDate" class="form-label"></label>
+                <input asp-for="CreatedDate" class="form-control" readonly />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Save</button>
+        </form>
+    </div>
+</body>
+</html>

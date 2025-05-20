@@ -1,0 +1,137 @@
+﻿@using Ticket_Management.DAL.Model
+@model IEnumerable<CustomerTicket>    
+
+@{
+    ViewData["Title"] = "Filter Tickets";
+    var query = Context.Request.Query;
+}
+
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title> </title>
+<style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #0d6efd;
+                color: white;
+            }
+</style>
+</head>
+
+    <body>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+
+    <div class="container mt-5">
+
+        <h2 class="mb-4">Filter Tickets</h2>
+
+
+        <form method="get" asp-action="Filter">
+            <div>
+                <label>Status:</label>
+                <select name="status">
+                    <option value=""> All Status </option>
+                    <option value="Open" selected="@(query["status"] == "Open")">Open</option>
+                    <option value="Closed" selected="@(query["status"] == "Closed")">Closed</option>
+                    <option value="InProgress" selected="@(query["status"] == "InProgress")">In Progress</option>
+                </select>
+            </div>
+            <br /> 
+            <div>
+                <label>Priority:</label>
+                <select name="priority">
+                    <option value=""> All Priorities </option>
+                    <option value="High" selected="@(query["priority"] == "High")">High</option>
+                    <option value="Medium" selected="@(query["priority"] == "Medium")">Medium</option>
+                    <option value="Low" selected="@(query["priority"] == "Low")">Low</option>
+                </select>
+            </div>
+            <br />
+            <div>
+                <label>Issue Type:</label>
+                <select name="issueType">
+                    <option value=""> All Issues </option>
+                    <option value="Technical" selected="@(query["issueType"] == "Technical")">Technical</option>
+                    <option value="Billing" selected="@(query["issueType"] == "Billing")">Billing</option>
+                    <option value="Complaint" selected="@(query["issueType"] == "Complaint")">Complaint</option>
+                    <option value="Other" selected="@(query["issueType"] == "Other")">Other</option>
+
+                </select>
+            </div>
+            <br />
+
+            <button type="submit" class="btn btn-primary">Filter</button>             <br />
+            <br />
+
+        </form>
+
+        @if (Model != null && Model.Any())
+        {
+            <table id="customers" class="table table-striped table-bordered">
+                <thead class="table-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th>Created</th>
+                        <th>Issue Type</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in Model)
+                    {
+                        <tr>
+                            <td>@t.TicketId</td>
+                            <td>@t.Description</td>
+                            <td>@t.CreatedDate.ToString("yyyy-MM-dd")</td>
+                            <td>@t.IssueType.IssueTypeName</td>
+                            <td>@t.Priority.PriorityName</td>
+                            <td>@t.Status.StatusName</td>
+                            <td>
+                                <a asp-controller="Client"
+                                   asp-action="DetailsClient"
+                                   asp-route-id="@t.TicketId"
+                                   class="btn btn-sm btn-outline-secondary">
+                                    Details
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">No tickets match the selected criteria.</div>
+        }
+    </div>
+
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+    </html>

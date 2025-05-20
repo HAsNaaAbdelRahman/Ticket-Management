@@ -1,0 +1,93 @@
+﻿@using Ticket_Management.DAL.DTOs.Outgoing
+@model TicketForm
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <style>
+        body {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f8fafc;
+            margin: 0;
+        }
+
+        .card {
+            max-width: 420px;
+            width: 100%;
+            padding: 2.5rem 3rem;
+            margin-right: 30%;
+            margin-left: 35%;
+            margin-top: 3%;
+        }
+    </style>
+</head>
+<body>
+    <div class="card text-center shadow">
+        <form asp-action="Create" method="post">
+            <h1 class="display-6 mb-4">New Ticket</h1>
+            <div asp-validation-summary="All"></div>
+
+            <div class="mb-3">
+                <input asp-for="Ticket.FullName" type="text" class="form-control" placeholder="Full Name" required>
+            </div>
+            <div class="mb-3">
+                <input asp-for="Ticket.MobileNumber" type="text" class="form-control" placeholder=" Mobile Number" required>
+            </div>
+            <div class="mb-3">
+                <input asp-for="Ticket.Email" type="email" class="form-control" placeholder="Email" required>
+            </div>
+            <div class="mb-3">
+                <textarea asp-for="Ticket.Description"
+                          class="form-control"
+                          rows="3"
+                          placeholder="Description" required></textarea>
+                <span asp-validation-for="Ticket.Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3" style="text-align: left;">
+                <label asp-for="Ticket.PriorityId" asp-items="Model.PriorityTypes" class="form-label"></label>
+                <select asp-for="Ticket.PriorityId"class="form-select">
+
+                    <option value="">Select Priority</option>
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                    </select>
+                <span asp-validation-for="Ticket.PriorityId" class="text-danger"></span>
+                </div>
+
+            <div class="mb-3" style="text-align: left;">
+                <label asp-for="Ticket.IssueTypeId" asp-items="Model.IssueTypes" class="form-label"></label>
+                <select asp-for="Ticket.IssueTypeId" class="form-select">
+                    <option value=""> Select issue type</option>
+                    <option value="1">Technical</option>
+                    <option value="2">Billing</option>
+                    <option value="3">Complaint</option>
+                    <option value="4">Other</option>
+
+                </select>
+                <span asp-validation-for="Ticket.IssueTypeId" class="text-danger"></span>
+            </div>
+            @if (Model.IsAdmin)
+            {
+                <div class="mb-3" style="text-align: left;">
+                    <label asp-for="Ticket.StatusId" class="form-label"></label>
+                    <select asp-for="Ticket.StatusId"
+                            asp-items="Model.Status"
+                            class="form-select">
+                        <option value="">Select status</option>
+                    </select>
+                    <span asp-validation-for="Ticket.StatusId" class="text-danger"></span>
+                </div>
+            }
+                <button type="submit" class="btn btn-primary w-100">Save</button>
+            </form>
+        </div>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

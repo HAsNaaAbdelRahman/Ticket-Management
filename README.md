@@ -1,130 +1,193 @@
 # Ticket Management System – ASP.NET MVC 5
 
-## Overview
+## Objective
 
-This is a technical pilot task developed as part of an evaluation for an ASP.NET MVC 5 developer position. The project is a functional **Ticket Management Module** that enables users to create, view, edit, and list customer service tickets.
+This is a pilot technical evaluation task to demonstrate skills in:
 
-The application follows **N-Tier Architecture** and uses **SQL Server** with **stored procedures** for all database interactions.
+- ASP.NET MVC 5  
+- SQL Server with stored procedures  
+- N-tier architecture  
+- Input validation and error handling  
 
+The system provides a functional ticket management module for customers and admins to manage support tickets.
 
 ---
 
 ## Features
 
-- Create new customer service tickets
-- View list of all tickets (filter by issue type and priority)
-- View ticket details in read-only mode
-- Admin can edit existing tickets (except ID and Created Date)
-- Optional home page for navigation
-- Full client-side and server-side validation
+### Customer
+
+- Create a new ticket with full validation.
+- View submitted tickets.
+- View full ticket details.
+
+### Admin
+
+- View all tickets.
+- Filter tickets by Issue Type and Priority.
+- Edit ticket details (except ID and Created Date).
 
 ---
 
-## Architecture
+## Application Pages
 
-The project follows a clean **N-Tier Architecture** pattern:
-
-- **Presentation Layer (PL)**: ASP.NET MVC 5 (Controllers + Views)
-- **Business Logic Layer (BLL)**: Contains all application logic and validation
-- **Data Access Layer (DAL)**: Handles all database interactions using stored procedures
-
-Data is passed between layers using **DTOs** and **ViewModels**.
-
----
-
-## Technologies Used
-
-- ASP.NET MVC 5
-- C#
-- SQL Server
-- ADO.NET
-- HTML/CSS/Bootstrap (for styling)
-- JavaScript/jQuery (for client-side validation)
+| Page | Access | Description |
+|------|--------|-------------|
+| Create Ticket | Customer | Submit a new support ticket |
+| List Tickets | Customer / Admin | View all submitted tickets |
+| View Ticket Details | Customer / Admin | Read-only ticket view |
+| Edit Ticket | Admin | Modify ticket info (all fields except ID and date) |
+| (Optional) Home Page | Customer / Admin | Navigation to all features |
 
 ---
 
-## How to Run
+## Architecture Overview
 
-1. **Database Setup**
-   - Open the SQL script file provided in the `Database` folder.
-   - Execute the script in SQL Server Management Studio to create:
-     - `CustomerTickets` table
-     - `IssueTypes` table
-     - Stored Procedures (Insert, Update, Select, Filter)
-     - Seed Data for `IssueTypes`
+This project uses N-Tier Architecture:
 
-2. **Configure Connection String**
-   - In `Web.config`, update the `connectionStrings` section with your local SQL Server credentials.
+- Presentation Layer (MVC Controllers & Views)  
+  Handles routing, UI interaction, and communicates with the BLL.
 
-3. **Build and Run the Application**
-   - Open the solution in Visual Studio.
-   - Build the project to restore all dependencies.
-   - Run the application using IIS Express or your preferred method.
-   - Use the navigation links to create, view, and manage tickets.
+- Business Logic Layer (BLL)  
+  Handles validation, error handling, and business rules.
+
+- Data Access Layer (DAL)  
+  Calls SQL stored procedures and returns DTOs.
 
 ---
 
-## Database Schema
+## Database Structure
+
+### Schemas Used
+
+| Schema | Purpose |
+|--------|---------|
+| Customers_INFO | Customer account data |
+| Tickets_Services | Ticket submission data |
+| Tickets_order | Lookup values (Priority, Status, Issue Types) |
+
+---
 
 ### Tables
 
-**1. CustomerTickets**
+#### Tickets_order.PriorityTypes
 
-| Field         | Type         | Notes                     |
-|---------------|--------------|---------------------------|
-| TicketID      | int (PK)     | Identity, Primary Key     |
-| FullName      | nvarchar     | Required                  |
-| MobileNumber  | nvarchar     | Required                  |
-| Email         | nvarchar     | Required, Valid Email     |
-| IssueTypeID   | int (FK)     | Foreign key to IssueTypes |
-| Description   | nvarchar     | Required, Multiline       |
-| Priority      | nvarchar     | Low / Medium / High       |
-| Status        | nvarchar     | Default: "Open"           |
-| CreatedDate   | datetime     | Auto-populated server-side|
+```sql
+CREATE TABLE Tickets_order.PriorityTypes (
+    PriorityID INT IDENTITY(1,1) PRIMARY KEY,
+    PriorityName VARCHAR(20) NOT NULL
+);
+```
 
-**2. IssueTypes**
+#### Tickets_order.IssueTypes
 
-| Field         | Type         | Notes                 |
-|---------------|--------------|-----------------------|
-| IssueTypeID   | int (PK)     | Primary Key           |
-| IssueTypeName | nvarchar     | E.g., Technical, Billing, etc.|
+```sql
+CREATE TABLE Tickets_order.IssueTypes (
+    IssueTypeID INT IDENTITY(1,1) PRIMARY KEY,
+    IssueTypeName VARCHAR(50) NOT NULL
+);
+```
+
+#### Tickets_order.StatusTypes
+
+```sql
+CREATE TABLE Tickets_order.StatusTypes (
+    StatusID INT IDENTITY(1,1) PRIMARY KEY,
+    StatusName VARCHAR(30) NOT NULL
+);
+```
+
+#### Customers_INFO.Customers
+
+```sql
+CREATE TABLE Customers_INFO.Customers (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    FullName NVARCHAR(225) NOT NULL,
+    MobileNumber VARCHAR(25),
+    Email VARCHAR(255) NOT NULL,
+    Password NVARCHAR(256) NOT NULL
+);
+```
+
+#### Tickets_Services.CustomerTickets
+
+```sql
+CREATE TABLE Tickets_Services.CustomerTickets (
+    TicketID INT PRIMARY KEY IDENTITY(1,1),
+    FullName NVARCHAR(225) NOT NULL,
+    MobileNumber VARCHAR(25),
+    Email VARCHAR(255) NOT NULL,
+    Description NVARCHAR(MAX),
+    CreatedDate DATETIME2(0) DEFAULT GETUTCDATE() NOT NULL,
+    IssueTypeID INT NOT NULL,
+    PriorityID INT NOT NULL,
+    StatusID INT NOT NULL,
+    CustomerID INT NOT NULL,
+    CONSTRAINT FK_CustomerTickets_IssueType FOREIGN KEY (IssueTypeID) REFERENCES Tickets_order.IssueTypes(IssueTypeID) ON UPDATE CASCADE,
+    CONSTRAINT FK_CustomerTickets_PriorityTypes FOREIGN KEY (PriorityID) REFERENCES Tickets_order.PriorityTypes(PriorityID) ON UPDATE CASCADE,
+    CONSTRAINT FK_CustomerTickets_StatusTypes FOREIGN KEY (StatusID) REFERENCES Tickets_order.StatusTypes(StatusID) ON UPDATE CASCADE,
+    CONSTRAINT FK_CustomerTickets_Customers FOREIGN KEY (CustomerID) REFERENCES Customers_INFO.Customers(ID) ON UPDATE CASCADE
+);
+```
 
 ---
 
-## Screens Implemented
+## Stored Procedures Used
 
-1. **Create Ticket Page** – for customers
-2. **List Tickets Page** – for admin & customers (with filters)
-3. **View Ticket Page** – read-only ticket details
-4. **Edit Ticket Page** – for admin only
-5. **(Optional)** Home Page – simple navigation UI
+Only stored procedures are used for all operations:
 
----
-
-## Error Handling
-
-- Used structured `try-catch` blocks in all layers (DAL, BLL, Controllers)
-- Clear user messages for validation failures and system errors
-- All exceptions are either logged or shown with context-specific messages
+- sp_InsertCustomerTicket
+- sp_UpdateCustomerTicket
+- sp_GetAllTickets
+- sp_GetTicketById
+- sp_FilterTicketsByPriorityAndIssue
 
 ---
 
-## Assumptions
+## Validation & Error Handling
 
-- Role-based access (Admin vs Customer) is assumed logically; full identity/auth system is not implemented.
-- Status is defaulted to "Open" and not editable.
-- Stored procedures are used exclusively for **Insert**, **Update**, **Select**, and **Filter** operations.
-- No use of scaffolding – all views and logic are hand-coded.
-
----
-
-## Contributors
-
-- Developed by: **Hasnaa**  
-  Role: ASP.NET MVC Developer
+- Client-side and Server-side validation using Data Annotations
+- All data access wrapped in try-catch blocks
+- Friendly error messages returned to UI
+- Invalid input prompts error highlights and form restrictions
 
 ---
 
-## License
+## How to Run the Project
 
-This project is for evaluation purposes only.
+### 1. Prerequisites
+
+- Visual Studio 2019+
+- SQL Server Management Studio
+- .NET Framework 4.8
+
+### 2. Setup Steps
+
+1. Open `.sln` file in Visual Studio
+2. Update `Web.config` connection string
+3. Run the included SQL script to:
+   - Create schemas, tables
+   - Insert lookup data
+   - Create stored procedures
+4. Build and run the solution
+5. Navigate through `/Home`, `/Ticket/Create`, etc.
+
+---
+
+## Notes & Assumptions
+
+- Manual Views (no scaffolding used)
+- ViewModels are used for form handling and dropdowns
+- Simple login/authorization can be added as an extension
+- Password hashing assumed but not implemented in this task
+
+---
+
+## Deliverables
+
+- Visual Studio Solution (zipped)
+- SQL script with:
+  - Tables and Schemas
+  - Stored Procedures
+  - Sample seed data
+- README file (this one)

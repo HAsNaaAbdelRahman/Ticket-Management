@@ -21,8 +21,9 @@ The system provides a functional ticket management module for customers and admi
 
 - ### Create Ticket Page
 
-![Create Ticket Page](Screenshot 2025-05-20 043956.png)
-![Create Ticket Page](Screenshot 2025-05-20 043946.png)
+![Create Ticket Page](Screenshot2.png)
+
+![Create Ticket Page](Screenshot1.png)
 
 
 - View submitted tickets.

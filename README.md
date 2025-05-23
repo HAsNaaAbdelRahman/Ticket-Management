@@ -25,28 +25,28 @@ Make sure to seed these credentials in the database or use them during registrat
 ## Features
 - Login && SignUp
   ![Create Ticket Page](img/signUp.png)
-  ![Create Ticket Page](signin.png)
+  ![Create Ticket Page](img/signin.png)
 
 
 ### Customer
 
 - Create a new ticket with full validation.
 - ### Create Ticket Page
-![Create Ticket Page](Screenshot1.png)
+![Create Ticket Page](img/Screenshot1.png)
 - View submitted tickets.
- ![submitted tickets](Screenshot2.png)
+ ![submitted tickets](img/Screenshot2.png)
 - View full ticket details.
- ![Ticket details](details.png)
+ ![Ticket details](img/details.png)
 
 ### Admin
 
 - View all tickets.
-  ![ View all tickets](admindashboard.png)
+  ![ View all tickets](img/admindashboard.png)
 - Filter tickets by Issue Type and Priority.
- ![filter](filterby.png)
- ![filterwithnomatch](nomatch.png)
+ ![filter](img/filterby.png)
+ ![filterwithnomatch](img/nomatch.png)
 - Edit ticket details (except ID and Created Date).
-![edit](edit.png)
+![edit](img/edit.png)
 
   
 

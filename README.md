@@ -24,7 +24,7 @@ Make sure to seed these credentials in the database or use them during registrat
 
 ## Features
 - Login && SignUp
-  ![Create Ticket Page](signUp.png)
+  ![Create Ticket Page](img/signUp.png)
   ![Create Ticket Page](signin.png)
 
 
